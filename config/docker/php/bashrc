@@ -1,0 +1,24 @@
+# Init all database data.
+# Update it if new init data scripts are added.
+function project_init {
+    composer install
+    php /var/www/html/bin/console doctrine:migrations:migrate --no-interaction
+}
+
+#search in history like in CSH
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+#show git branch in prompt
+parse_git_branch() {
+      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+#if we pass environment variable IMAGE_NAME to container, show it in prompt, we can use:
+PS1="\[\033[0;31m\]\${SERVICE_NAME:-docker}\[\033[0m\]:\[\033[0;34m\]\w\[\033[00m\]\$(parse_git_branch)"
+case `id -u` in
+    0) PS1="${PS1}# ";;
+    *) PS1="${PS1}$ ";;
+esac
+
+source /var/www/html/config/docker/php/bash_aliases

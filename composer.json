@@ -7,14 +7,26 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/dbal": "^3",
+        "doctrine/doctrine-bundle": "^2.14",
+        "doctrine/doctrine-migrations-bundle": "^3.4",
+        "doctrine/orm": "^3.3",
+        "ramsey/uuid-doctrine": "^2.1",
+        "stof/doctrine-extensions-bundle": "^1.14",
         "symfony/console": "7.3.*",
         "symfony/dotenv": "7.3.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.3.*",
         "symfony/runtime": "7.3.*",
+        "symfony/validator": "7.3.*",
         "symfony/yaml": "7.3.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
+        "phpstan/phpstan": "^2.1",
+        "symfony/maker-bundle": "^1.63",
+        "symplify/easy-coding-standard": "^12.5",
+        "zenstruck/foundry": "^2.6"
     },
     "config": {
         "allow-plugins": {
@@ -46,6 +58,10 @@
         "symfony/polyfill-php82": "*"
     },
     "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse -c config/phpStan/phpStan.neon --memory-limit 512M",
+        "phpstan-baseline": "vendor/bin/phpstan analyse -c config/phpStan/phpStan.neon -b",
+        "ecs": "vendor/bin/ecs",
+        "ecs-fix": "vendor/bin/ecs --fix",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

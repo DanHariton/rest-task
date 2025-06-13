@@ -16,5 +16,19 @@ services:
     App\:
         resource: '../src/'
 
+    App\DataFixtures\AppFixtures:
+        arguments:
+            $smallCount: '%env(int:FIXTURES_SMALL_COUNT)%'
+            $largeCount: '%env(int:FIXTURES_LARGE_COUNT)%'
+
+    Gedmo\Mapping\Driver\AttributeReader:
+        autowire: true
+
+    Gedmo\SoftDeleteable\SoftDeleteableListener:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@Gedmo\Mapping\Driver\AttributeReader' ] ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
