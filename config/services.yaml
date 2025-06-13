@@ -30,5 +30,11 @@ services:
         calls:
             - [ setAnnotationReader, [ '@Gedmo\Mapping\Driver\AttributeReader' ] ]
 
+    App\EventSubscriber\RequestLoggerSubscriber:
+        arguments:
+            $requestLogger: '@monolog.logger.request'
+        tags:
+            - { name: kernel.event_subscriber }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
