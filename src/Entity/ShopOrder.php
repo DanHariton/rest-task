@@ -159,4 +159,14 @@ class ShopOrder implements SoftDeleteable
 
         return $this;
     }
+
+    /**
+     * @param Collection<int, OrderItem> $items
+     */
+    public function setOrderItems(Collection $items): ShopOrder
+    {
+        $this->orderItems = $items;
+
+        return $this;
+    }
 }

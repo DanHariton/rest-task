@@ -9,7 +9,7 @@ use App\DataFixtures\Factory\ShopOrderFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+final class AppFixtures extends Fixture
 {
     public function __construct(
         private readonly int $smallCount,
