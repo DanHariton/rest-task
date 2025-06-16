@@ -30,7 +30,9 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.1",
         "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.2",
         "symfony/maker-bundle": "^1.63",
+        "symfony/phpunit-bridge": "^7.3",
         "symplify/easy-coding-standard": "^12.5",
         "zenstruck/foundry": "^2.6"
     },

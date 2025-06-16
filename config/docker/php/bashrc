@@ -11,14 +11,17 @@ bind '"\e[B": history-search-forward'
 
 #show git branch in prompt
 parse_git_branch() {
-      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 #if we pass environment variable IMAGE_NAME to container, show it in prompt, we can use:
-PS1="\[\033[0;31m\]\${SERVICE_NAME:-docker}\[\033[0m\]:\[\033[0;34m\]\w\[\033[00m\]\$(parse_git_branch)"
+PS1='\[\033[0;33m\]$(parse_git_branch)\[\033[00m\] \[\033[0;31m\]${SERVICE_NAME:-docker}\[\033[0m\]:\[\033[0;34m\]\w\[\033[00m\]'
+
 case `id -u` in
     0) PS1="${PS1}# ";;
     *) PS1="${PS1}$ ";;
 esac
+
+git config --global --add safe.directory /var/www/html
 
 source /var/www/html/config/docker/php/bash_aliases
